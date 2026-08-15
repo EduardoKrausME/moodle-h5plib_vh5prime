@@ -1,8 +1,6 @@
 name: Auto-release via commit message
 
-on:
-  push:
-    branches: [ master ]
+on: [push]
 
 permissions:
   contents: write

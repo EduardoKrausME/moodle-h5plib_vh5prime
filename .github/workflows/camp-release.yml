@@ -6,11 +6,7 @@
 
 name: Publish release to camp
 
-on:
-  push:
-    tags:
-      - 'V *.*.*'
-  workflow_dispatch: {}
+on: [push]
 
 env:
   CAMP_INDEX_REPO: camp-registry/camp-index  # the camp index repository
