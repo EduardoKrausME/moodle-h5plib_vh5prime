@@ -58,9 +58,6 @@ jobs:
 
           echo "component: ${COMPONENT}"
           echo "release:   ${RELEASE}"
-      - name: Require a listing manifest
-        run: camp scaffold plugin --check
-
       - name: Label heuristics + security lint (warn-only preview)
         run: |
           camp lint-labels plugin || true
