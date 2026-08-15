@@ -8,7 +8,8 @@ name: Publish release to camp
 
 on:
   push:
-    tags: ['V [0-9]+.[0-9]+.[0-9]+']
+    tags:
+      - 'V [0-9]+.[0-9]+.[0-9]+'
   workflow_dispatch: {}   # backfill an old release: run at the existing tag
                           #   gh workflow run camp-release.yml --ref v1.1.0
 
