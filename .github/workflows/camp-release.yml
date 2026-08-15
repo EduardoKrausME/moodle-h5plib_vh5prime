@@ -31,14 +31,9 @@ jobs:
 
     runs-on: ubuntu-24.04
     steps:
-      # Read-only: camp release computes your record against your entry's
-      # current ledger. Nothing is pushed from this job.
-      - name: Check out camp index
-        uses: actions/checkout@v7
-        with:
-          repository: ${{ env.CAMP_INDEX_REPO }}
-          path: index-repo
-      - uses: actions/setup-python@v7
+      - uses:
+          - actions/setup-python@v7
+          - actions/checkout@v4
         with:
           python-version: "3.12"
 
@@ -46,6 +41,8 @@ jobs:
         run: pip install --quiet "git+https://github.com/camp-registry/camp-tools@v0.2.39"
       - name: Resolve plugin metadata
         run: |
+          COMPONENT=$(php -r 'define("MOODLE_INTERNAL", true);define("MATURITY_STABLE", true); $plugin=new stdClass(); require "version.php"; echo $plugin->component ?? "";')
+
           RELEASE=$(php -r 'define("MOODLE_INTERNAL", true);define("MATURITY_STABLE", true); $plugin=new stdClass(); require "version.php"; echo $plugin->release ?? "";')
 
           if [ -z "${COMPONENT}" ]; then
