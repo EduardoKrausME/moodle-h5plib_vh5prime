@@ -1,0 +1,23 @@
+# (RFC §4.1). Authors update their listing with an ordinary commit; camp
+# ingests and hash-pins it at each tagged release. Listing for h5plib_vh5prime.
+
+name: "H5Prime Viewer"
+summary: "Render Moodle H5P content with the H5Prime viewer through Moodle's H5P library handler."
+description: |
+  H5Prime Viewer is an H5P library handler for Moodle that renders H5P content with the H5Prime player.
+
+  The plugin integrates H5Prime with Moodle's native H5P subsystem instead of adding a separate course activity. Once installed and selected as the H5P library handler, Moodle passes the H5P content data, user context and language information to the bundled H5Prime viewer.
+
+  Key capabilities:
+  - Integrates H5Prime with Moodle's native H5P library handler system
+  - Renders existing H5P content using the H5Prime canvas/player
+  - Includes the H5Prime JavaScript, styles, templates and translations required by the viewer
+  - Keeps H5P content inside Moodle while replacing the presentation/runtime layer
+  - Does not require an external account or paid service
+
+labels:
+  - fully-free
+category: "content"
+links:
+  docs: https://github.com/EduardoKrausME/moodle-h5plib_vh5prime#readme
+  issues: https://github.com/EduardoKrausME/moodle-h5plib_vh5prime/issues
