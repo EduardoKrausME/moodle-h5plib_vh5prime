@@ -27,23 +27,10 @@ env:
 
 jobs:
   publish:
+    if: startsWith(github.event.head_commit.message, 'V ')
+
     runs-on: ubuntu-24.04
     steps:
-      # Releases are built at immutable tags only; the publish service
-      # additionally refuses branch-minted tokens, so this guard just
-      # fails earlier with a better message (camp-tools#15).
-      - name: Require a tag ref
-        run: |
-          if [ "${{ github.ref_type }}" != "tag" ]; then
-            echo "::error::This workflow must run at a tag. From workflow_dispatch, pick the tag in the ref dropdown (or: gh workflow run camp-release.yml --ref v1.2.3). Current ref: ${{ github.ref_name }} (${{ github.ref_type }})"
-            exit 1
-          fi
-      - name: Check out plugin at the tag
-        uses: actions/checkout@v7
-        with:
-          path: plugin
-          fetch-depth: 0
-
       # Read-only: camp release computes your record against your entry's
       # current ledger. Nothing is pushed from this job.
       - name: Check out camp index
