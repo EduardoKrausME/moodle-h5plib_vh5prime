@@ -46,8 +46,6 @@ jobs:
         run: pip install --quiet "git+https://github.com/camp-registry/camp-tools@v0.2.39"
       - name: Resolve plugin metadata
         run: |
-          COMPONENT=$(php -r 'define("MOODLE_INTERNAL", true);define("MATURITY_STABLE", true); $plugin=new stdClass(); require "version.php"; echo $plugin->component ?? "";')
-
           RELEASE=$(php -r 'define("MOODLE_INTERNAL", true);define("MATURITY_STABLE", true); $plugin=new stdClass(); require "version.php"; echo $plugin->release ?? "";')
 
           if [ -z "${COMPONENT}" ]; then
