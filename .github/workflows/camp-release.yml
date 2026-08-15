@@ -44,17 +44,45 @@ jobs:
 
       - name: Install camp tools
         run: pip install --quiet "git+https://github.com/camp-registry/camp-tools@v0.2.39"
-      - name: Resolve component name
+      - name: Resolve plugin metadata
         run: |
+          COMPONENT=$(php -r '
+            define("MOODLE_INTERNAL", true);
+            define("MATURITY_STABLE", 200);
+            $plugin = new stdClass();
+            require "plugin/version.php";
+            echo $plugin->component ?? "";
+          ')
+
+          RELEASE=$(php -r '
+            define("MOODLE_INTERNAL", true);
+            define("MATURITY_STABLE", 200);
+            $plugin = new stdClass();
+            require "plugin/version.php";
+            echo $plugin->release ?? "";
+          ')
+
           if [ -z "${COMPONENT}" ]; then
-            COMPONENT=$(sed -nE 's/.*\$plugin->component[[:space:]]*=[[:space:]]*.?([a-z][a-z0-9_]*).?[[:space:]]*;.*/\1/p' plugin/version.php | head -1)
-          fi
-          if [ -z "${COMPONENT}" ]; then
-            echo "::error::COMPONENT is empty and \$plugin->component was not found in version.php — set one of them"
+            echo "::error::\$plugin->component not found"
             exit 1
           fi
+
+          if [ -z "${RELEASE}" ]; then
+            echo "::error::\$plugin->release not found"
+            exit 1
+          fi
+
           echo "COMPONENT=${COMPONENT}" >> "$GITHUB_ENV"
+          echo "RELEASE=${RELEASE}" >> "$GITHUB_ENV"
+
           echo "component: ${COMPONENT}"
+          echo "release:   ${RELEASE}"
+      - name: Validate tag against release
+        run: |
+          if [ "${GITHUB_REF_NAME}" != "${RELEASE}" ]; then
+            echo "::error::Git tag (${GITHUB_REF_NAME}) != \$plugin->release (${RELEASE})"
+            exit 1
+          fi
       - name: Require a listing manifest
         run: camp scaffold plugin --check
 
