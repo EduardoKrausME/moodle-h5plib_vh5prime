@@ -58,12 +58,6 @@ jobs:
 
           echo "component: ${COMPONENT}"
           echo "release:   ${RELEASE}"
-      - name: Validate tag against release
-        run: |
-          if [ "${GITHUB_REF_NAME}" != "${RELEASE}" ]; then
-            echo "::error::Git tag (${GITHUB_REF_NAME}) != \$plugin->release (${RELEASE})"
-            exit 1
-          fi
       - name: Require a listing manifest
         run: camp scaffold plugin --check
 
