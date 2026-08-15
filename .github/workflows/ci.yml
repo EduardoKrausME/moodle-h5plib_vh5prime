@@ -1,6 +1,8 @@
 name: Moodle Plugin CI
 
-on: [push, pull_request]
+on:
+  push:
+    tags: ['[0-9]+.[0-9]+.[0-9]+']
 
 jobs:
   test:
