@@ -50,7 +50,7 @@ jobs:
             define("MOODLE_INTERNAL", true);
             define("MATURITY_STABLE", 200);
             $plugin = new stdClass();
-            require "plugin/version.php";
+            require "version.php";
             echo $plugin->component ?? "";
           ')
 
@@ -58,7 +58,7 @@ jobs:
             define("MOODLE_INTERNAL", true);
             define("MATURITY_STABLE", 200);
             $plugin = new stdClass();
-            require "plugin/version.php";
+            require "version.php";
             echo $plugin->release ?? "";
           ')
 
