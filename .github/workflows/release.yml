@@ -7,6 +7,8 @@ permissions:
 
 jobs:
   auto-release:
+    if: startsWith(github.event.head_commit.message, 'V ')
+
     runs-on:
       ubuntu-latest
 
