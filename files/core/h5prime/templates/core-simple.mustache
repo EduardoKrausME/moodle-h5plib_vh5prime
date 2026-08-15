@@ -1,0 +1,35 @@
+<div class="h5pc-app h5pc-app--simple" data-h5pc-root="1">
+    <header class="h5pc-topbar h5pc-topbar--simple" data-role="topbar">
+        <div class="h5pc-topbar__left">
+            <div class="h5pc-brand h5pc-brand--inline">
+                <img class="h5pc-brand__image" src="{{{baseUrl}}}/assets/logo.svg">
+                <!--div class="h5pc-brand__mark" aria-hidden="true"></div-->
+                <!--div class="h5pc-brand__text">{{brandName}}</div-->
+            </div>
+            <!--div class="h5pc-topbar__kicker">{{kicker}}</div-->
+        </div>
+    </header>
+
+    <main class="h5pc-main h5pc-main--simple" data-role="main">
+        <section class="h5pc-page h5pc-page--simple" data-role="page">
+            <div class="h5pc-page__inner">
+                <div class="h5pc-content" data-role="content"></div>
+            </div>
+        </section>
+    </main>
+
+    <div class="h5pc-modal" data-role="modal" hidden>
+        <div class="h5pc-modal__backdrop" data-action="modal-close" aria-hidden="true"></div>
+
+        <div class="h5pc-modal__dialog" role="dialog" aria-modal="true">
+            <div class="h5pc-modal__chrome">
+                <div class="h5pc-modal__title"></div>
+                <button type="button" class="h5pc-modal__close" data-action="modal-close" aria-label="Close">
+                    ×
+                </button>
+            </div>
+
+            <div class="h5pc-modal__content" data-role="modal-content"></div>
+        </div>
+    </div>
+</div>

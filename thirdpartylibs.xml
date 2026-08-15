@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<libraries>
+    <library>
+        <location>files/editor</location>
+        <name>h5p-editor-php-library</name>
+        <description>A general library that is supposed to be used in most PHP implementations of H5P.</description>
+        <version>moodle-1.27.2</version>
+        <license>GPL</license>
+        <licenseversion>3.0+</licenseversion>
+        <repository>https://github.com/h5p/h5p-editor-php-library/</repository>
+        <copyrights>
+            <copyright>Joubel</copyright>
+        </copyrights>
+    </library>
+</libraries>

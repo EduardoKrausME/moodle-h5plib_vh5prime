@@ -1,0 +1,18 @@
+<div class="h5pc-cover" data-role="cover">
+    <div class="h5pc-cover__card">
+        <h2 class="h5pc-cover__title">{{title}}</h2>
+
+        {{#description}}
+            <div class="h5pc-cover__desc">
+                {{{description}}}
+            </div>
+        {{/description}}
+
+        <div class="h5pc-cover__actions">
+            <button type="button" class="btn btn-dark h5pc-btn h5pc-btn--primary h5pc-cover__start"
+                    data-action="cover-start">
+                {{i18n.start}}
+            </button>
+        </div>
+    </div>
+</div>

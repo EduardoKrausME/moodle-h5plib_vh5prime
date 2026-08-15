@@ -1,0 +1,121 @@
+<div class="h5pc-app h5pc-app--book" data-h5pc-root="1">
+    <div class="h5pc-drawer-overlay" data-action="sidebar-close" aria-hidden="true"></div>
+
+    <aside class="h5pc-sidebar" data-role="sidebar">
+        <div class="h5pc-sidebar__brand">
+            <div class="h5pc-brand">
+                <img class="h5pc-brand__image" src="{{{baseUrl}}}/assets/logo-blank.svg">
+                <!--div class="h5pc-brand__mark" aria-hidden="true"></div-->
+                <!--div class="h5pc-brand__text">{{brandName}}</div-->
+            </div>
+
+            <button type="button"
+                    class="h5pc-sidebar__close"
+                    data-action="sidebar-close"
+                    aria-label="{{i18n.closeMenu}}">×</button>
+        </div>
+
+        <nav class="h5pc-nav" aria-label="{{i18n.summary}}">
+            <div class="h5pc-nav__list" data-role="nav-list">
+                {{#navItems}}
+                    <button
+                            type="button"
+                            class="h5pc-nav__item {{#isActive}}is-active{{/isActive}} {{#isCompleted}}is-completed{{/isCompleted}}"
+                            data-action="nav"
+                            data-nav-id="{{id}}"
+                            title="{{title}}"
+                            aria-label="{{title}}"
+                            aria-current="{{#isActive}}page{{/isActive}}">
+                        <!--span class="h5pc-nav__index">{{index}}</span-->
+                        <span class="h5pc-nav__title">{{{title}}}</span>
+
+                        <span class="h5pc-nav__status" aria-hidden="true">
+              {{#isCompleted}}
+                  <span class="h5pc-dot h5pc-dot--ok"></span>
+              {{/isCompleted}}
+                            {{^isCompleted}}
+                                <span class="h5pc-dot h5pc-dot--empty"></span>
+                            {{/isCompleted}}
+            </span>
+                    </button>
+                {{/navItems}}
+            </div>
+        </nav>
+    </aside>
+
+    <main class="h5pc-main" data-role="main">
+        <header class="h5pc-topbar" data-role="topbar">
+            <div class="h5pc-topbar__left">
+                <button type="button"
+                        class="h5pc-burger"
+                        data-action="sidebar-toggle"
+                        aria-label="{{i18n.openMenu}}"></button>
+
+                <!--div class="h5pc-topbar__kicker">{{kicker}}</div-->
+                <!--div class="h5pc-topbar__title" data-role="view-title" >{{viewTitle}}</div-->
+            </div>
+        </header>
+
+        <section class="h5pc-page" data-role="page">
+            <div class="h5pc-page__inner">
+                <div class="h5pc-content" data-role="content"></div>
+            </div>
+        </section>
+        <footer class="h5pc-footer h5pc-footer--book" data-role="footer" >
+            <div class="h5pc-footer__inner">
+                <div class="h5pc-footer__left">
+                    <button type="button" class="btn btn-light h5pc-btn h5pc-btn--ghost" data-action="prev">
+                        <svg viewBox="0 0 24 24" style="width: 24px; height: 24px;">
+                            <path d="M8.89861 18.9537C9.19163 19.2464 9.66651 19.2462 9.95927 18.9532C10.252 18.6602 10.2518
+                                     18.1853 9.95881 17.8925L4.81193 12.7501L21 12.7501C21.4142 12.7501 21.75 12.4143 21.75
+                                     12.0001C21.75 11.5859 21.4142 11.2501 21 11.2501L4.81191 11.2501L9.95881 6.10771C10.2518
+                                     5.81494 10.252 5.34007 9.95927 5.04705C9.66651 4.75403 9.19163 4.75382 8.89861
+                                     5.04659L2.47858 11.461C2.33763 11.5974 2.25 11.7885 2.25 12.0001C2.25 12.212
+                                     2.33781 12.4033 2.47901 12.5396L8.89861 18.9537Z"></path></svg>
+                    </button>
+                </div>
+
+                <div class="h5pc-footer__right">
+                    <button type="button" class="btn btn-dark h5pc-btn h5pc-btn--primary" data-action="next">
+                        <span class="h5pc-footer-progress" data-role="footer-progress"></span>
+                        <hr>
+                        <span class="icon" style="min-width: 24px; min-height: 24px;">
+                            <svg viewBox="0 0 24 24" style="width: 24px; height: 24px;">
+                                <path d="M18.0303 11.4697C18.3232 11.7626 18.3232 12.2374 18.0303 12.5303L9.03033 21.5303C8.73744
+                                         21.8232 8.26256 21.8232 7.96967 21.5303C7.67678 21.2374 7.67678 20.7626 7.96967
+                                         20.4697L16.4393 12L7.96967 3.53033C7.67678 3.23744 7.67678 2.76256 7.96967 2.46967C8.26256
+                                         2.17678 8.73744 2.17678 9.03033 2.46967L18.0303 11.4697Z"></path>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+
+                <div class="h5pc-nav__footer">
+                    <button type="button"
+                            class="btn btn-dark h5pc-btn h5pc-btn--primary"
+                            data-action="summary"
+                            title="{{i18n.summary}}"
+                            aria-label="{{i18n.summary}}">
+                        <span class="h5pc-nav__icon" aria-hidden="true">▶</span>
+                        <span class="h5pc-nav__title">{{i18n.summary}}</span>
+                    </button>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <div class="h5pc-modal" data-role="modal" hidden>
+        <div class="h5pc-modal__backdrop" data-action="modal-close" aria-hidden="true"></div>
+
+        <div class="h5pc-modal__dialog" role="dialog" aria-modal="true">
+            <div class="h5pc-modal__chrome">
+                <div class="h5pc-modal__title"></div>
+                <button type="button" class="h5pc-modal__close" data-action="modal-close" aria-label="Close">
+                    ×
+                </button>
+            </div>
+
+            <div class="h5pc-modal__content" data-role="modal-content"></div>
+        </div>
+    </div>
+</div>

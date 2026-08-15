@@ -1,0 +1,114 @@
+<div class="h5pc-summary" data-role="summary">
+    <div class="h5pc-summary__top">
+        <div class="h5pc-summary__cards">
+            <div class="h5pc-statcard">
+                <div class="h5pc-statcard__head">
+                    <div class="h5pc-statcard__label">{{i18n.totalScore}}</div>
+                </div>
+
+                <div class="h5pc-statcard__body">
+                    <div class="h5pc-statcard__numbers">
+                        <div class="h5pc-statcard__value">{{scoreText}}</div>
+                        <div class="h5pc-statcard__sub">{{interactionsDoneText}}</div>
+                    </div>
+
+                    <div class="h5pc-ring" data-pct="{{scorePct}}" aria-hidden="true">
+                        <svg class="h5pc-ring__svg" viewBox="0 0 36 36" focusable="false" aria-hidden="true">
+                            <path class="h5pc-ring__track" d="M18 2 a 16 16 0 0 1 0 32 a 16 16 0 0 1 0 -32"></path>
+                            <path class="h5pc-ring__value" d="M18 2 a 16 16 0 0 1 0 32 a 16 16 0 0 1 0 -32"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!--
+            <div class="h5pc-statcard">
+                <div class="h5pc-statcard__head">
+                    <div class="h5pc-statcard__label">{{i18n.bookProgress}}</div>
+                </div>
+
+                <div class="h5pc-statcard__body">
+                    <div class="h5pc-statcard__numbers">
+                        <div class="h5pc-statcard__value">{{bookPct}}%</div>
+                        <div class="h5pc-statcard__sub">{{bookText}}</div>
+                    </div>
+
+                    <div class="h5pc-ring" data-pct="{{bookPct}}" aria-hidden="true">
+                        <svg class="h5pc-ring__svg" viewBox="0 0 36 36" focusable="false" aria-hidden="true">
+                            <path class="h5pc-ring__track" d="M18 2 a 16 16 0 0 1 0 32 a 16 16 0 0 1 0 -32"></path>
+                            <path class="h5pc-ring__value" d="M18 2 a 16 16 0 0 1 0 32 a 16 16 0 0 1 0 -32"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            -->
+
+            <div class="h5pc-statcard">
+                <div class="h5pc-statcard__head">
+                    <div class="h5pc-statcard__label">{{i18n.interactionsProgress}}</div>
+                </div>
+
+                <div class="h5pc-statcard__body">
+                    <div class="h5pc-statcard__numbers">
+                        <div class="h5pc-statcard__value">{{interactionsPct}}%</div>
+                        <div class="h5pc-statcard__sub">{{interactionsText}}</div>
+                    </div>
+
+                    <div class="h5pc-ring" data-pct="{{interactionsPct}}" aria-hidden="true">
+                        <svg class="h5pc-ring__svg" viewBox="0 0 36 36" focusable="false" aria-hidden="true">
+                            <path class="h5pc-ring__track" d="M18 2 a 16 16 0 0 1 0 32 a 16 16 0 0 1 0 -32"></path>
+                            <path class="h5pc-ring__value" d="M18 2 a 16 16 0 0 1 0 32 a 16 16 0 0 1 0 -32"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="h5pc-summary__actions">
+            <!--
+            <button type="button" class="btn btn-success h5pc-btn h5pc-btn--primary" data-action="submit">
+                {{i18n.submitReport}}
+            </button>
+            -->
+
+            {{#showRestart}}
+                <button type="button" class="btn btn-light h5pc-btn h5pc-btn--ghost" data-action="restart">
+                    {{i18n.restart}}
+                </button>
+            {{/showRestart}}
+
+            <div class="h5pc-summary__filter ms-auto" style="display: none">
+                <select class="form-select h5pc-select" aria-label="Filter">
+                    <option selected>All interactions</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="h5pc-summary__groups">
+        {{#groups}}
+            <section class="h5pc-group">
+                <div class="h5pc-group__head">
+                    <div class="h5pc-group__title">{{title}}</div>
+                    <div class="h5pc-group__meta">
+                        <span class="h5pc-group__metaLabel">{{i18n.status}}</span>
+                    </div>
+                </div>
+
+                <div class="h5pc-group__list">
+                    {{#items}}
+                        <button
+                                type="button"
+                                class="h5pc-item {{#isCompleted}}is-completed{{/isCompleted}}"
+                                data-action="goto"
+                                data-loc="{{loc}}">
+                            <span class="h5pc-item__dot" aria-hidden="true"></span>
+                            <span class="h5pc-item__title">{{title}}</span>
+                            <span class="h5pc-item__score">{{statusText}}</span>
+                        </button>
+                    {{/items}}
+                </div>
+            </section>
+        {{/groups}}
+    </div>
+</div>
