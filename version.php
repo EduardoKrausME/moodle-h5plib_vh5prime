@@ -24,8 +24,8 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-$plugin->version = 2026081400;
-$plugin->release = "1.0.12";
+$plugin->version = 2026092000;
+$plugin->release = "1.0.13";
 $plugin->requires = 2024100100;
 $plugin->maturity = MATURITY_STABLE;
 $plugin->component = 'h5plib_vh5prime';
