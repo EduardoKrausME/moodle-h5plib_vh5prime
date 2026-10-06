@@ -22,6 +22,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined('MOODLE_INTERNAL') || die;
+
 $string['editor:a11ytitlehidelabel'] = 'Hide label for AT';
 $string['editor:a11ytitleshowlabel'] = 'Show label for AT';
 $string['editor:add'] = 'Add';

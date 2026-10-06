@@ -1,17 +1,52 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ * h5peditor.class.php
+ *
+ * @package   h5plib_vh5prime
+ * @copyright 2026 Eduardo Kraus {@link https://eduardokraus.com}
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 
 namespace Moodle;
 
 use stdClass;
 
+/**
+ * Class H5peditor.
+ */
 class H5peditor {
 
+    /**
+     * Property hasWYSIWYGEditor.
+     *
+     * @var mixed
+     */
     private static $hasWYSIWYGEditor = [
         'H5P.CoursePresentation',
         'H5P.InteractiveVideo',
         'H5P.DragQuestion'
     ];
 
+    /**
+     * Property styles.
+     *
+     * @var mixed
+     */
     public static $styles = [
         'libs/cropper.css',
         'styles/css/h5p-hub-client.css',
@@ -19,6 +54,11 @@ class H5peditor {
         'styles/css/application.css',
         'styles/css/libs/zebra_datepicker.min.css'
     ];
+    /**
+     * Property scripts.
+     *
+     * @var mixed
+     */
     public static $scripts = [
         'scripts/h5p-hub-client.js',
         'scripts/h5peditor.js',
@@ -54,7 +94,17 @@ class H5peditor {
         'scripts/h5peditor-pre-save.js',
         'ckeditor/ckeditor.js',
     ];
+    /**
+     * Property h5p.
+     *
+     * @var mixed
+     */
     private $h5p, $storage;
+    /**
+     * Property ajax.
+     *
+     * @var mixed
+     */
     public $ajax, $ajaxInterface, $content;
 
     /**
@@ -523,6 +573,12 @@ class H5peditor {
         return $libraries;
     }
 
+    /**
+     * Method canInstallContentType.
+     *
+     * @param mixed $contentType Parameter contentType.
+     * @return mixed Return value.
+     */
     public function canInstallContentType($contentType) {
         $canInstallAll = $this->h5p->h5pF->hasPermission(H5PPermission::UPDATE_LIBRARIES);
         $canInstallRecommended = $this->h5p->h5pF->hasPermission(H5PPermission::INSTALL_RECOMMENDED);

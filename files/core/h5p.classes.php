@@ -1,4 +1,26 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ * h5p.classes.php
+ *
+ * @package   h5plib_vh5prime
+ * @copyright 2026 Eduardo Kraus {@link https://eduardokraus.com}
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 
 namespace Moodle;
 
@@ -683,11 +705,31 @@ interface H5PFrameworkInterface {
  * This class is used for validating H5P files
  */
 class H5PValidator {
+    /**
+     * Property h5pF.
+     *
+     * @var mixed
+     */
     public $h5pF;
+    /**
+     * Property h5pC.
+     *
+     * @var mixed
+     */
     public $h5pC;
+    /**
+     * Property h5pCV.
+     *
+     * @var mixed
+     */
     public $h5pCV;
 
     // Schemas used to validate the h5p files
+    /**
+     * Property h5pRequired.
+     *
+     * @var mixed
+     */
     private $h5pRequired = [
         'title' => '/^.{1,255}$/u',
         'language' => '/^[-a-zA-Z]{1,10}$/',
@@ -700,6 +742,11 @@ class H5PValidator {
         'embedTypes' => ['iframe', 'div'],
     ];
 
+    /**
+     * Property h5pOptional.
+     *
+     * @var mixed
+     */
     private $h5pOptional = [
         'contentType' => '/^.{1,255}$/',
         'dynamicDependencies' => [
@@ -734,6 +781,11 @@ class H5PValidator {
     ];
 
     // Schemas used to validate the library files
+    /**
+     * Property libraryRequired.
+     *
+     * @var mixed
+     */
     private $libraryRequired = [
         'title' => '/^.{1,255}$/',
         'majorVersion' => '/^[0-9]{1,5}$/',
@@ -743,6 +795,11 @@ class H5PValidator {
         'runnable' => '/^(0|1)$/',
     ];
 
+    /**
+     * Property libraryOptional.
+     *
+     * @var mixed
+     */
     private $libraryOptional = [
         'author' => '/^.{1,255}$/',
         'license' => '/^(cc-by|cc-by-sa|cc-by-nd|cc-by-nc|cc-by-nc-sa|cc-by-nc-nd|pd|cr|MIT|GPL1|GPL2|GPL3|MPL|MPL2)$/',
@@ -1627,9 +1684,24 @@ class H5PValidator {
  */
 class H5PStorage {
 
+    /**
+     * Property h5pF.
+     *
+     * @var mixed
+     */
     public $h5pF;
+    /**
+     * Property h5pC.
+     *
+     * @var mixed
+     */
     public $h5pC;
 
+    /**
+     * Property contentId.
+     *
+     * @var mixed
+     */
     public $contentId = null; // Quick fix so WP can get ID of new content.
 
     /**
@@ -1890,7 +1962,17 @@ class H5PStorage {
  * This class is used for exporting zips
  */
 class H5PExport {
+    /**
+     * Property h5pF.
+     *
+     * @var mixed
+     */
     public $h5pF;
+    /**
+     * Property h5pC.
+     *
+     * @var mixed
+     */
     public $h5pC;
 
     /**
@@ -2116,6 +2198,9 @@ class H5PExport {
     }
 }
 
+/**
+ * Class H5PPermission.
+ */
 abstract class H5PPermission {
     const DOWNLOAD_H5P = 0;
     const EMBED_H5P = 1;
@@ -2125,6 +2210,9 @@ abstract class H5PPermission {
     const COPY_H5P = 8;
 }
 
+/**
+ * Class H5PDisplayOptionBehaviour.
+ */
 abstract class H5PDisplayOptionBehaviour {
     const NEVER_SHOW = 0;
     const CONTROLLED_BY_AUTHOR_DEFAULT_ON = 1;
@@ -2133,6 +2221,9 @@ abstract class H5PDisplayOptionBehaviour {
     const CONTROLLED_BY_PERMISSIONS = 4;
 }
 
+/**
+ * Class H5PContentHubSyncStatus.
+ */
 abstract class H5PContentHubSyncStatus {
     const NOT_SYNCED = 0;
     const SYNCED = 1;
@@ -2140,6 +2231,9 @@ abstract class H5PContentHubSyncStatus {
     const FAILED = 3;
 }
 
+/**
+ * Class H5PContentStatus.
+ */
 abstract class H5PContentStatus {
     const STATUS_UNPUBLISHED = 0;
     const STATUS_DOWNLOADED = 1;
@@ -2149,6 +2243,9 @@ abstract class H5PContentStatus {
     const STATUS_SUSPENDED = 5;
 }
 
+/**
+ * Class H5PHubEndpoints.
+ */
 abstract class H5PHubEndpoints {
     const CONTENT_TYPES = 'hub-api.h5p.org/v1/content-types/';
     const SITES = 'hub-api.h5p.org/v1/sites';
@@ -2156,6 +2253,12 @@ abstract class H5PHubEndpoints {
     const CONTENT = 'hub-api.h5p.org/v1/contents';
     const REGISTER = 'hub-api.h5p.org/v1/accounts';
 
+    /**
+     * Method createURL.
+     *
+     * @param mixed $endpoint Parameter endpoint.
+     * @return mixed Return value.
+     */
     public static function createURL($endpoint) {
         $protocol = (extension_loaded('openssl') ? 'https' : 'http');
         return "{$protocol}://{$endpoint}";
@@ -2215,31 +2318,71 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], "edit.php") > 1) {
  */
 class H5PCore {
 
+    /**
+     * Property coreApi.
+     *
+     * @var mixed
+     */
     public static $coreApi = [
         'majorVersion' => 1,
         'minorVersion' => 28,
     ];
+    /**
+     * Property styles.
+     *
+     * @var mixed
+     */
     public static $styles = [
         'h5prime/h5prime-canvas.css',
         'h5prime/modules-styles.css',
     ];
+    /**
+     * Property scripts.
+     *
+     * @var mixed
+     */
     public static $scripts = [
         'h5prime/jquery.bundle.min.js',
         'h5prime/mustache.js',
         'h5prime/h5prime.bundle.min.js',
         'init.js',
     ];
+    /**
+     * Property adminScripts.
+     *
+     * @var mixed
+     */
     public static $adminScripts = [
         'js/jquery.js',
         'js/h5p-utils.js',
     ];
 
+    /**
+     * Property defaultContentWhitelist.
+     *
+     * @var mixed
+     */
     public static $defaultContentWhitelist = 'json png jpg jpeg gif bmp tif tiff eot ttf woff woff2 otf webm mp4 ogg mp3 m4a wav txt pdf rtf doc docx xls xlsx ppt pptx odt ods odp csv diff patch swf md textile vtt webvtt gltf glb';
+    /**
+     * Property defaultLibraryWhitelistExtras.
+     *
+     * @var mixed
+     */
     public static $defaultLibraryWhitelistExtras = 'js css svg xml';
 
+    /**
+     * Property librariesJsonData.
+     *
+     * @var mixed
+     */
     public $librariesJsonData, $contentJsonData, $mainJsonData, $h5pF, $fs, $h5pD, $disableFileCheck;
     const SECONDS_IN_WEEK = 604800;
 
+    /**
+     * Property exportEnabled.
+     *
+     * @var mixed
+     */
     private $exportEnabled;
 
     // Disable flags
@@ -2258,6 +2401,11 @@ class H5PCore {
     const DISPLAY_OPTION_COPY = 'copy';
 
     // Map flags to string
+    /**
+     * Property disable.
+     *
+     * @var mixed
+     */
     public static $disable = [
         self::DISABLE_FRAME => self::DISPLAY_OPTION_FRAME,
         self::DISABLE_DOWNLOAD => self::DISPLAY_OPTION_DOWNLOAD,
@@ -2690,6 +2838,12 @@ class H5PCore {
         return 'libraries/' . H5PCore::libraryToFolderName($dependency);
     }
 
+    /**
+     * Method getDependenciesHash.
+     *
+     * @param mixed $dependencies Parameter dependencies.
+     * @return mixed Return value.
+     */
     private static function getDependenciesHash(&$dependencies) {
         // Build hash of dependencies
         $toHash = [];
@@ -4375,9 +4529,29 @@ class H5PCore {
  * @property bool allowedStyles
  */
 class H5PContentValidator {
+    /**
+     * Property h5pF.
+     *
+     * @var mixed
+     */
     public $h5pF;
+    /**
+     * Property h5pC.
+     *
+     * @var mixed
+     */
     public $h5pC;
+    /**
+     * Property typeMap.
+     *
+     * @var mixed
+     */
     private $typeMap, $libraries, $dependencies, $nextWeight;
+    /**
+     * Property allowed_styleable_tags.
+     *
+     * @var mixed
+     */
     private static $allowed_styleable_tags = [
         'span',
         'p',
@@ -5460,6 +5634,11 @@ class H5PContentValidator {
         return $uri;
     }
 
+    /**
+     * Method getMetadataSemantics.
+     *
+     * @return mixed Return value.
+     */
     public function getMetadataSemantics() {
         static $semantics;
 
@@ -5707,6 +5886,11 @@ class H5PContentValidator {
         return $semantics;
     }
 
+    /**
+     * Method getCopyrightSemantics.
+     *
+     * @return mixed Return value.
+     */
     public function getCopyrightSemantics() {
         static $semantics;
 
